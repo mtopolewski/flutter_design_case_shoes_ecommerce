@@ -61,24 +61,40 @@ class BottomBarButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {},
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          icon,
-          Text(
-            text,
-            style: const TextStyle(
-              fontFamily: 'CoreSans',
-              fontWeight: FontWeight.w300,
-              fontSize: 11,
-              height: 1.8,
-              wordSpacing: -1,
-              color: Colors.white,
-            ),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        customBorder: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(6)),
+        ),
+        onTap: () {},
+        child: Ink(
+          decoration: const BoxDecoration(
+              //color: Colors.red,
+              borderRadius: BorderRadius.all(
+            Radius.circular(6),
+          )),
+          width: 56,
+          height: 60,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              icon,
+              Text(
+                text,
+                style: const TextStyle(
+                  fontFamily: 'CoreSans',
+                  fontWeight: FontWeight.w300,
+                  fontSize: 11,
+                  height: 1.8,
+                  wordSpacing: -1,
+                  color: Colors.white,
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
