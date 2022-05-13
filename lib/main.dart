@@ -93,7 +93,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const SliverPadding(
-                padding: EdgeInsets.only(bottom: 20.0),
+                padding: EdgeInsets.only(bottom: 120.0),
               )
             ],
           ),

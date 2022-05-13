@@ -116,13 +116,38 @@ class BottomMenuClipper extends CustomClipper<Path> {
 
   Path _getPath(Size size) {
     var path = Path();
-
     path.moveTo(0, 40);
-    path.arcTo(Rect.fromCircle(center: const Offset(10, 40), radius: 10),
-        degToRad(-180), degToRad(90), false);
+
+    path.arcTo(
+      Rect.fromCircle(center: const Offset(10, 40), radius: 10),
+      degToRad(-180),
+      degToRad(90),
+      false,
+    );
+
+    path.quadraticBezierTo(
+      size.width / 4,
+      0,
+      size.width / 2,
+      0,
+    );
+
     path.lineTo(size.width / 2, 0);
-    path.arcTo(Rect.fromCircle(center: Offset(size.width - 10, 40), radius: 10),
-        degToRad(-70), degToRad(90), false);
+
+    path.quadraticBezierTo(
+      0.75 * size.width,
+      0,
+      size.width - 10,
+      28,
+    );
+
+    path.arcTo(
+      Rect.fromCircle(center: Offset(size.width - 10, 40), radius: 10),
+      degToRad(-70),
+      degToRad(90),
+      false,
+    );
+
     path.lineTo(size.width, 40);
     path.lineTo(size.width, size.height);
     path.lineTo(0, size.height);
