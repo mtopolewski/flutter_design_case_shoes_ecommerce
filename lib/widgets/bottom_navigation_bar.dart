@@ -1,53 +1,57 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as Math;
 
 class BottomNavigationBar extends StatelessWidget {
   const BottomNavigationBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Color(0xFF3858DA),
-            Color(0xFF8C78EF),
+    return ClipPath(
+      clipper: BottomMenuClipper(),
+      child: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFF3858DA),
+              Color(0xFF8C78EF),
+            ],
+          ),
+        ),
+        height: 110,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: const [
+            BottomBarButton(
+              icon: Icon(
+                Icons.favorite_outline,
+                color: Colors.white,
+              ),
+              text: "Saved",
+            ),
+            BottomBarButton(
+              icon: Icon(
+                Icons.home_outlined,
+                color: Colors.white,
+              ),
+              text: "Home",
+            ),
+            BottomBarButton(
+              icon: Icon(
+                Icons.shopping_cart_outlined,
+                color: Colors.white,
+              ),
+              text: "My Order",
+            ),
+            BottomBarButton(
+              icon: Icon(
+                Icons.person_outlined,
+                color: Colors.white,
+              ),
+              text: "Profile",
+            ),
           ],
         ),
-      ),
-      height: 110,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: const [
-          BottomBarButton(
-            icon: Icon(
-              Icons.favorite_outline,
-              color: Colors.white,
-            ),
-            text: "Saved",
-          ),
-          BottomBarButton(
-            icon: Icon(
-              Icons.home_outlined,
-              color: Colors.white,
-            ),
-            text: "Home",
-          ),
-          BottomBarButton(
-            icon: Icon(
-              Icons.shopping_cart_outlined,
-              color: Colors.white,
-            ),
-            text: "My Order",
-          ),
-          BottomBarButton(
-            icon: Icon(
-              Icons.person_outlined,
-              color: Colors.white,
-            ),
-            text: "Profile",
-          ),
-        ],
       ),
     );
   }
@@ -97,5 +101,33 @@ class BottomBarButton extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class BottomMenuClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) => _getPath(size);
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => true;
+
+  double degToRad(num deg) => deg * (Math.pi / 180.0);
+  num radToDeg(double rad) => rad * 180.0 / Math.pi;
+
+  Path _getPath(Size size) {
+    var path = Path();
+
+    path.moveTo(0, 40);
+    path.arcTo(Rect.fromCircle(center: const Offset(10, 40), radius: 10),
+        degToRad(-180), degToRad(90), false);
+    path.lineTo(size.width / 2, 0);
+    path.arcTo(Rect.fromCircle(center: Offset(size.width - 10, 40), radius: 10),
+        degToRad(-70), degToRad(90), false);
+    path.lineTo(size.width, 40);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    path.close();
+
+    return path;
   }
 }
