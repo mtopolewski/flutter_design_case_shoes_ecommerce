@@ -112,7 +112,7 @@ class SmallCard extends StatelessWidget {
             child: Row(
               children: const [
                 Text(
-                  "\$250",
+                  "\$250.00",
                   style: TextStyle(
                     fontFamily: 'CoreSans',
                     wordSpacing: -1,
