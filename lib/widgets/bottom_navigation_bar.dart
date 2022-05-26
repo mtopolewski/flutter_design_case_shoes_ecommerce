@@ -79,6 +79,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
                     icon: const Icon(
                       Icons.favorite_outline,
                       color: Colors.white,
+                      size: 30,
                     ),
                     text: "Saved",
                     isSelected: _selectedIndex == 0,
@@ -93,6 +94,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
                         Icon(
                           Icons.home_outlined,
                           color: Colors.white,
+                          size: 28,
                         ),
                         SizedBox(
                           height: 10,
@@ -111,6 +113,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
                         Icon(
                           Icons.shopping_cart_outlined,
                           color: Colors.white,
+                          size: 28,
                         ),
                         SizedBox(
                           height: 10,
@@ -127,6 +130,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
                     icon: const Icon(
                       Icons.person_outlined,
                       color: Colors.white,
+                      size: 30,
                     ),
                     text: "Profile",
                     isSelected: _selectedIndex == 3,
@@ -142,7 +146,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
         Visibility(
           visible: _selectedIndex == 0,
           child: Positioned(
-            top: 26,
+            top: 28,
             left: test0,
             child: const SelectedButton(
               icon: Icons.favorite_outline,
@@ -152,7 +156,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
         Visibility(
           visible: _selectedIndex == 1,
           child: Positioned(
-            top: 6,
+            top: 8,
             left: test1,
             child: const SelectedButton(icon: Icons.home_outlined),
           ),
@@ -160,7 +164,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
         Visibility(
           visible: _selectedIndex == 2,
           child: Positioned(
-            top: 6,
+            top: 7,
             left: test2,
             child: const SelectedButton(
               icon: Icons.shopping_cart_outlined,
@@ -170,7 +174,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
         Visibility(
           visible: _selectedIndex == 3,
           child: Positioned(
-            top: 22,
+            top: 23,
             left: test3,
             child: const SelectedButton(icon: Icons.person_outlined),
           ),
@@ -227,7 +231,7 @@ class BottomBarButton extends StatelessWidget {
                 style: const TextStyle(
                   fontFamily: 'CoreSans',
                   fontWeight: FontWeight.w300,
-                  fontSize: 11,
+                  fontSize: 12,
                   height: 1.8,
                   wordSpacing: -1,
                   color: Colors.white,
