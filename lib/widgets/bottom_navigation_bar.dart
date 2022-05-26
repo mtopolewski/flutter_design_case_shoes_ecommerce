@@ -17,8 +17,8 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    const buttonWidth = 56;
-    const selectedButtonWidth = 50;
+    const buttonWidth = 70;
+    const selectedButtonWidth = 60;
     var remainingSpace = width - 4 * buttonWidth;
     var spaceBetween = remainingSpace / 5;
     const x = 1;
@@ -29,25 +29,13 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
     //     buttonWidth / 2 -
     //     selectedButtonWidth / 2;
 
-    var test0 = 1 * spaceBetween +
-        0 * buttonWidth +
-        buttonWidth / 2 -
-        selectedButtonWidth / 2;
+    var center0 = 1 * spaceBetween + 0 * buttonWidth + buttonWidth / 2;
 
-    var test1 = 2 * spaceBetween +
-        1 * buttonWidth +
-        buttonWidth / 2 -
-        selectedButtonWidth / 2;
+    var center1 = 2 * spaceBetween + 1 * buttonWidth + buttonWidth / 2;
 
-    var test2 = 3 * spaceBetween +
-        2 * buttonWidth +
-        buttonWidth / 2 -
-        selectedButtonWidth / 2;
+    var center2 = 3 * spaceBetween + 2 * buttonWidth + buttonWidth / 2;
 
-    var test3 = 4 * spaceBetween +
-        3 * buttonWidth +
-        buttonWidth / 2 -
-        selectedButtonWidth / 2;
+    var center3 = 4 * spaceBetween + 3 * buttonWidth + buttonWidth / 2;
 
     _onButtonClick(int index) {
       setState(() {
@@ -146,8 +134,8 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
         Visibility(
           visible: _selectedIndex == 0,
           child: Positioned(
-            top: 28,
-            left: test0,
+            top: 19,
+            left: center0 - selectedButtonWidth / 2,
             child: const SelectedButton(
               icon: Icons.favorite_outline,
             ),
@@ -156,16 +144,16 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
         Visibility(
           visible: _selectedIndex == 1,
           child: Positioned(
-            top: 8,
-            left: test1,
+            top: 3,
+            left: center1 - selectedButtonWidth / 2,
             child: const SelectedButton(icon: Icons.home_outlined),
           ),
         ),
         Visibility(
           visible: _selectedIndex == 2,
           child: Positioned(
-            top: 7,
-            left: test2,
+            top: 3,
+            left: center2 - selectedButtonWidth / 2,
             child: const SelectedButton(
               icon: Icons.shopping_cart_outlined,
             ),
@@ -174,8 +162,8 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
         Visibility(
           visible: _selectedIndex == 3,
           child: Positioned(
-            top: 23,
-            left: test3,
+            top: 19,
+            left: center3 - selectedButtonWidth / 2,
             child: const SelectedButton(icon: Icons.person_outlined),
           ),
         ),
@@ -215,7 +203,7 @@ class BottomBarButton extends StatelessWidget {
               Radius.circular(6),
             ),
           ),
-          width: 56,
+          width: 70,
           height: 60,
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -258,7 +246,8 @@ class BottomMenuClipper extends CustomClipper<Path> {
   num radToDeg(double rad) => rad * 180.0 / math.pi;
 
   Path _getPath(Size size) {
-    const buttonWidth = 56;
+    const buttonWidth = 70;
+    const selectedbuttonWidth = 60;
     var remainingSpace = size.width - 4 * buttonWidth;
     var spaceBetween = remainingSpace / 5;
     var yDeviation = 40.0;
@@ -266,7 +255,7 @@ class BottomMenuClipper extends CustomClipper<Path> {
     var cornerDiameter = 10.0;
 
     var path = Path();
-    path.moveTo(0, yDeviation + yOffset + cornerDiameter);
+    path.moveTo(0, yDeviation + yOffset /* + cornerDiameter*/);
     // path.arcTo(
     //   Rect.fromLTRB(
     //     0,
@@ -281,8 +270,8 @@ class BottomMenuClipper extends CustomClipper<Path> {
 
     final firstHalfCurve = QuadraticBezier([
       Vector2(path.getBounds().right, path.getBounds().top),
-      Vector2(size.width / 4, yOffset),
-      Vector2(size.width / 2, yOffset)
+      Vector2(size.width * 0.25, yOffset),
+      Vector2(size.width * 0.5, yOffset)
     ]);
 
     final secondHalfCurve = QuadraticBezier([
@@ -853,11 +842,11 @@ class SelectedButton extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(25)),
         ),
         child: Ink(
-          width: 50,
-          height: 50,
+          width: 60,
+          height: 60,
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(
-              Radius.circular(25),
+              Radius.circular(30),
             ),
             gradient: LinearGradient(colors: [
               Color(0xFF4868F1),
@@ -867,7 +856,7 @@ class SelectedButton extends StatelessWidget {
           child: Icon(
             icon,
             color: Colors.white,
-            size: 28,
+            size: 32,
           ),
         ),
         onTap: () {},
